@@ -1,4 +1,6 @@
-# owe — high-performance wallpaper engine for Omarchy
+# SigmaOS owe
+
+> Forked from omacom/owe (MIT). See `SIGMAOS_FORK.md`.
 
 `owe` plays video files, `GIF`, and still images as the Hyprland background.
 Video containers include `mp4`, `mkv`, `webm`, `mov`, `avi`, `mpeg`, `ts`, `wmv`, `flv`, `ogv`, and `3gp`.
