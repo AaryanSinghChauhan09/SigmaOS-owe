@@ -1,11 +1,11 @@
 # SigmaOS owe
 
-> Forked from omacom/owe (MIT). See `SIGMAOS_FORK.md`.
+> Forked from SigmaOS/owe (MIT). See `SIGMAOS_FORK.md`.
 
 `owe` plays video files, `GIF`, and still images as the Hyprland background.
 Video containers include `mp4`, `mkv`, `webm`, `mov`, `avi`, `mpeg`, `ts`, `wmv`, `flv`, `ogv`, and `3gp`.
-It joins the Omarchy theme switch through existing contracts only.
-It changes no packaged Omarchy file.
+It joins the SigmaOS theme switch through existing contracts only.
+It changes no packaged SigmaOS file.
 
 > This project is experimental. **Use it at your own risk.**
 > See the [performance follow-up document](docs/performance-follow-up.md) for known issues and incomplete checks.
@@ -24,7 +24,7 @@ It changes no packaged Omarchy file.
 
 ## Install
 
-From the Omarchy Package Repository (OPR):
+From the SigmaOS Package Repository (OPR):
 
 ```bash
 omarchy pkg add owe
@@ -45,7 +45,7 @@ Or build from source, as below.
 
 ## Quick start
 
-Install the build and runtime packages on Omarchy first. Packages already
+Install the build and runtime packages on SigmaOS first. Packages already
 installed are skipped:
 
 ```bash
@@ -67,7 +67,7 @@ owe always-animate on
 ## CLI reference
 
 ```bash
-owe set <path>            # Update the Omarchy background symlink
+owe set <path>            # Update the SigmaOS background symlink
 owe next                  # Cycle to next theme background
 owe current               # Show current background name
 owe refresh               # Re-read the background symlink now
@@ -104,7 +104,7 @@ owe --socket "$XDG_RUNTIME_DIR/owe-test/owed.sock" status
 
 One daemon can run in each runtime directory.
 An intro requires a still background and ends after 30 seconds at most.
-The daemon accepts `--prepare-intro <video>` to start an offscreen, paused decode as it starts. The systemd unit asks Omarchy for the enabled login intro; an empty or unavailable selection keeps ordinary startup. Preparation never plays the clip or consumes the login. Quickshell still starts the intro and reveals the desktop only when it is ready. While the prepared intro waits for that request, the daemon answers at once and leaves the still with the shell, which draws it by itself as it starts. When the request comes, the shell lets go of its still before the clip resumes, since its login cover hides the desktop until the intro moves, so the clip plays from its start once the shell is free to reveal it. A new background, a lost renderer, a lock or sleep, or 15 seconds without a request ends the wait, and the still is handed to the shell as usual.
+The daemon accepts `--prepare-intro <video>` to start an offscreen, paused decode as it starts. The systemd unit asks SigmaOS for the enabled login intro; an empty or unavailable selection keeps ordinary startup. Preparation never plays the clip or consumes the login. Quickshell still starts the intro and reveals the desktop only when it is ready. While the prepared intro waits for that request, the daemon answers at once and leaves the still with the shell, which draws it by itself as it starts. When the request comes, the shell lets go of its still before the clip resumes, since its login cover hides the desktop until the intro moves, so the clip plays from its start once the shell is free to reveal it. A new background, a lost renderer, a lock or sleep, or 15 seconds without a request ends the wait, and the still is handed to the shell as usual.
 
 The CLI accepts an absolute or relative intro path. `intro-prepare` warms one clip while the shell owns the still wallpaper; it never maps a preview or advances playback. A matching first-frame intro resumes that decoder, including when the theme staged a copy or renamed its directory. A changed clip falls back to an ordinary load. The prepared clip and idle context expire after one minute, and locking or sleeping releases them. After an intro the renderer unloads its media but keeps its context warm for that same window. `intro --start first-frame --refresh <video>` synchronizes the background symlink and starts playback in one request.
 An intro starts from the current still by default (`--start still`). `--start first-frame` starts it on its own first frame instead, for a shell that leaves the background empty for it.
@@ -123,7 +123,7 @@ Commands:
   and kind, job and failure state, pause state, reason, Hyprland flags,
   battery, lock, and renderer liveness.
 - `{"cmd":"config"}` — effective config values.
-- `{"cmd":"set","path":"/abs/file"}` validates a local file and atomically updates the Omarchy background symlink.
+- `{"cmd":"set","path":"/abs/file"}` validates a local file and atomically updates the SigmaOS background symlink.
 - `{"cmd":"refresh"}` — re-resolve the symlink and load now. While an intro plays, a refresh that names the intro's own still file leaves it playing.
 - `{"cmd":"pause"}` — set manual pause.
 - `{"cmd":"resume"}` — clear manual pause.
@@ -297,7 +297,7 @@ media is silent. Source files remain intact.
   that `wl_output.scale` alone would ask for. Without the protocols the
   renderer falls back to the integer `wl_output.scale`.
 - Stills and video cover the output. Aspect ratio is preserved with a
-  center crop, like `PreserveAspectCrop` in the Omarchy shell.
+  center crop, like `PreserveAspectCrop` in the SigmaOS shell.
 - The renderer returns freed large allocations to the OS. glibc keeps
   them resident by default, which inflates RSS by about 30 MiB with
   media buffers.
