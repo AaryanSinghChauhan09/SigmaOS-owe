@@ -178,12 +178,12 @@ int owe_transcode_cache_dir(char *buf, size_t len) {
     return 0;
 }
 
-int owe_omarchy_background_link(char *buf, size_t len) {
+int owe_sigmaos_background_link(char *buf, size_t len) {
     char state[PATH_MAX];
     if (owe_xdg_state_home(state, sizeof(state)) != 0) {
         return -1;
     }
-    if (snprintf(buf, len, "%s/omarchy/current/background", state) >= (int)len) {
+    if (snprintf(buf, len, "%s/sigmaos/current/background", state) >= (int)len) {
         return -1;
     }
     return 0;

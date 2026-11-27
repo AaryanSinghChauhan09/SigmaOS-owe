@@ -30,9 +30,9 @@ static const char *shell_command(void) {
         }
     }
     {
-        const char *omarchy = getenv("SIGMAOS_PATH");
-        if (omarchy && *omarchy) {
-            snprintf(resolved, sizeof(resolved), "%s/bin/sigmaos-shell", omarchy);
+        const char *sigmaos_path = getenv("SIGMAOS_PATH");
+        if (sigmaos_path && *sigmaos_path) {
+            snprintf(resolved, sizeof(resolved), "%s/bin/sigmaos-shell", sigmaos_path);
             if (access(resolved, X_OK) == 0) {
                 return resolved;
             }

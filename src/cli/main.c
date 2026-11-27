@@ -241,7 +241,7 @@ static int cmd_current(void) {
     char target[PATH_MAX];
     ssize_t n;
     const char *base;
-    if (owe_omarchy_background_link(link, sizeof(link)) != 0) {
+    if (owe_sigmaos_background_link(link, sizeof(link)) != 0) {
         fprintf(stderr, "owe: cannot resolve background link\n");
         return 1;
     }

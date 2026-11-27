@@ -20,7 +20,7 @@ int owed_watch_set_current(const char *path) {
     if (!path || !realpath(path, resolved) || stat(resolved, &st) != 0 ||
         !S_ISREG(st.st_mode) || access(resolved, R_OK) != 0 ||
         owe_kind_from_path(resolved) == OWE_KIND_UNKNOWN) return -1;
-    if (owe_omarchy_background_link(link, sizeof(link)) != 0) return -1;
+    if (owe_sigmaos_background_link(link, sizeof(link)) != 0) return -1;
     /* Create the symlink at a unique name first, then rename it over the
      * link. A file created in between is never published. */
     for (attempt = 0; attempt < 16; attempt++) {
@@ -57,7 +57,7 @@ int owed_watch_resolve_current(char *buf, unsigned long len) {
     if (!buf || len < 2) {
         return -1;
     }
-    if (owe_omarchy_background_link(link, sizeof(link)) != 0) {
+    if (owe_sigmaos_background_link(link, sizeof(link)) != 0) {
         return -1;
     }
     n = readlink(link, raw, sizeof(raw) - 1);
@@ -76,7 +76,7 @@ struct owed_watch *owed_watch_new(void) {
     if (!w) {
         return NULL;
     }
-    if (owe_omarchy_background_link(w->link, sizeof(w->link)) != 0) {
+    if (owe_sigmaos_background_link(w->link, sizeof(w->link)) != 0) {
         free(w);
         return NULL;
     }
