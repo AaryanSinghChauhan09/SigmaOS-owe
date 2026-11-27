@@ -27,14 +27,14 @@ It changes no packaged SigmaOS file.
 From the SigmaOS Package Repository (OPR):
 
 ```bash
-omarchy pkg add owe
+sigmaos pkg add owe
 systemctl --user enable --now owed.service
 ```
 
 To install the optional theme hook, run:
 
 ```bash
-omarchy hook install theme-set /usr/share/owe/10-owe-sync
+sigmaos hook install theme-set /usr/share/owe/10-owe-sync
 ```
 
 The daemon also watches the background symlink directly.
@@ -49,7 +49,7 @@ Install the build and runtime packages on SigmaOS first. Packages already
 installed are skipped:
 
 ```bash
-omarchy pkg add meson ninja gcc pkgconf wayland wayland-protocols libglvnd \
+sigmaos pkg add meson ninja gcc pkgconf wayland wayland-protocols libglvnd \
   libepoxy mpv ffmpeg systemd-libs socat python cmake qt6-declarative
 ```
 
