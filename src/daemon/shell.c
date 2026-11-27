@@ -9,7 +9,7 @@
 #include "log.h"
 #include "owe_spawn.h"
 
-/* Prefer the first omarchy-shell on PATH, then the session Omarchy tree. */
+/* Prefer the first sigmaos-shell on PATH, then the session SigmaOS tree. */
 static const char *shell_command(void) {
     static char resolved[PATH_MAX];
     const char *path = getenv("PATH");
@@ -20,7 +20,7 @@ static const char *shell_command(void) {
             size_t len = end ? (size_t)(end - cursor) : strlen(cursor);
             char candidate[PATH_MAX];
             if (len > 0 && len < sizeof(candidate)) {
-                snprintf(candidate, sizeof(candidate), "%.*s/omarchy-shell", (int)len, cursor);
+                snprintf(candidate, sizeof(candidate), "%.*s/sigmaos-shell", (int)len, cursor);
                 if (access(candidate, X_OK) == 0) {
                     snprintf(resolved, sizeof(resolved), "%s", candidate);
                     return resolved;
@@ -30,25 +30,25 @@ static const char *shell_command(void) {
         }
     }
     {
-        const char *omarchy = getenv("OMARCHY_PATH");
+        const char *omarchy = getenv("SIGMAOS_PATH");
         if (omarchy && *omarchy) {
-            snprintf(resolved, sizeof(resolved), "%s/bin/omarchy-shell", omarchy);
+            snprintf(resolved, sizeof(resolved), "%s/bin/sigmaos-shell", omarchy);
             if (access(resolved, X_OK) == 0) {
                 return resolved;
             }
         }
     }
-    return "omarchy-shell";
+    return "sigmaos-shell";
 }
 
 int owed_shell_plugin_set(bool enabled) {
     char log[4096];
     const char *command = shell_command();
-    char *argv[] = { (char *)command, "shell", "setPluginEnabled", "omarchy.background",
+    char *argv[] = { (char *)command, "shell", "setPluginEnabled", "sigmaos.background",
                      (char *)(enabled ? "true" : "false"), NULL };
     char *suspend[] = { (char *)command, "background", "setSuspended",
                         (char *)(enabled ? "false" : "true"), NULL };
-    /* omarchy-shell gives the shell 2 seconds to answer by default. A shell
+    /* sigmaos-shell gives the shell 2 seconds to answer by default. A shell
      * that is still starting, as at login, can take longer to switch a
      * plugin, so let it use most of the time this call waits for it. */
     setenv("OMARCHY_SHELL_IPC_TIMEOUT", "4s", 0);

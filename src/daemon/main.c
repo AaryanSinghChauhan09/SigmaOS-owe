@@ -274,7 +274,7 @@ static int activate_renderer(void) {
         return -1;
     }
     if (app->shell_enabled != 0 && owed_shell_plugin_set(false) != 0) {
-        /* A busy shell can run a call after omarchy-shell gave up on it, so
+        /* A busy shell can run a call after sigmaos-shell gave up on it, so
          * the shell may have let go of its still after all. */
         if (app->shell_enabled == 1) app->shell_resync = true;
         /* At login the shell may not be up yet: ask again shortly, as the

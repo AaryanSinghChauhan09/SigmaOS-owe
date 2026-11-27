@@ -224,11 +224,11 @@ static void usage(const char *argv0) {
 
 static int cmd_next(void) {
     pid_t pid;
-    char *argv[] = { "omarchy-theme-bg-next", NULL };
+    char *argv[] = { "sigmaos-theme-bg-next", NULL };
     extern char **environ;
     int status = 0;
-    if (posix_spawnp(&pid, "omarchy-theme-bg-next", NULL, NULL, argv, environ) != 0) {
-        fprintf(stderr, "owe: omarchy-theme-bg-next failed\n");
+    if (posix_spawnp(&pid, "sigmaos-theme-bg-next", NULL, NULL, argv, environ) != 0) {
+        fprintf(stderr, "owe: sigmaos-theme-bg-next failed\n");
         return 1;
     }
     while (waitpid(pid, &status, 0) < 0 && errno == EINTR) {
